@@ -1,4 +1,4 @@
-package com.ayoub.users.entities;
+package com.security.users.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,6 +15,6 @@ public class Role {
 	
 		@Id
 		 
-		private Long role_id;
+		private String role_id;
 		private String role;
 }

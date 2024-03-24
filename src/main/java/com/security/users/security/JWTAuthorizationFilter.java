@@ -1,4 +1,4 @@
-package com.ayoub.users.security;
+package com.security.users.security;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;

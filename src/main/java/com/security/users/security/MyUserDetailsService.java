@@ -1,4 +1,4 @@
-package com.ayoub.users.security;
+package com.security.users.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,8 +12,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import com.ayoub.users.entities.User;
-import com.ayoub.users.service.UserService;
+
+import com.security.users.entities.User;
+import com.security.users.service.UserService;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {

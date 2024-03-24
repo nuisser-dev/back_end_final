@@ -1,4 +1,4 @@
-package com.ayoub.users;
+package com.security.users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,10 +12,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import com.ayoub.users.entities.Role;
-import com.ayoub.users.entities.User;
-import com.ayoub.users.repos.RoleRepository;
-import com.ayoub.users.service.UserService;
+
+import com.security.users.entities.Role;
+import com.security.users.entities.User;
+import com.security.users.repos.RoleRepository;
+import com.security.users.service.UserService;
+
 import jakarta.annotation.PostConstruct;
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class Application {

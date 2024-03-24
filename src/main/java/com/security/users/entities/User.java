@@ -1,4 +1,4 @@
-package com.ayoub.users.entities;
+package com.security.users.entities;
 
 import java.util.List;
 import org.springframework.data.annotation.Id;

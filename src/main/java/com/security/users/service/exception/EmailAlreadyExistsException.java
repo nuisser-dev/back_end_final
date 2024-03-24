@@ -1,4 +1,4 @@
-package com.ayoub.users.service.exception;
+package com.security.users.service.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

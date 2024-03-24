@@ -1,4 +1,4 @@
-package com.ayoub.users.restControllers;
+package com.security.users.restControllers;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.ayoub.users.entities.User;
-import com.ayoub.users.service.UserService;
-import com.ayoub.users.service.register.RegistationRequest;
+
+import com.security.users.entities.User;
+import com.security.users.service.UserService;
+import com.security.users.service.register.RegistationRequest;
 
 @RestController
 @CrossOrigin(origins = "*")

@@ -1,28 +1,24 @@
-package com.ayoub.users.service;
-
-import com.ayoub.users.entities.Role;
-import com.ayoub.users.entities.User;
+package com.security.users.service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.ayoub.users.entities.Role;
-import com.ayoub.users.entities.User;
-import com.ayoub.users.repos.RoleRepository;
-import com.ayoub.users.repos.UserRepository;
-import com.ayoub.users.service.exception.EmailAlreadyExistsException;
-import com.ayoub.users.service.exception.ExpiredTokenException;
-import com.ayoub.users.service.exception.InvalidTokenException;
-import com.ayoub.users.service.register.RegistationRequest;
-import com.ayoub.users.service.register.VerificationToken;
-import com.ayoub.users.service.register.VerificationTokenRepository;
+
+import com.security.users.entities.Role;
+import com.security.users.entities.User;
+import com.security.users.repos.RoleRepository;
+import com.security.users.repos.UserRepository;
+import com.security.users.service.exception.ExpiredTokenException;
+import com.security.users.service.exception.InvalidTokenException;
+import com.security.users.service.register.RegistationRequest;
+import com.security.users.service.register.VerificationToken;
+import com.security.users.service.register.VerificationTokenRepository;
 
 
 @Transactional
@@ -80,6 +76,7 @@ public class UserServiceImpl implements UserService {
 	   throw new EmailAlreadyExistsException("email déjà existant!"); */
 	   
 	     User newUser = new User(); 
+	       
 	        newUser.setUsername(request.getUsername()); 
 	        newUser.setEmail(request.getEmail()); 
 	        newUser.setPassword(bCryptPasswordEncoder.encode(request.getPassword())); 

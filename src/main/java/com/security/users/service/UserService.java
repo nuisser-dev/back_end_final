@@ -1,10 +1,9 @@
-package com.ayoub.users.service;
+package com.security.users.service;
 import java.util.List;
-import java.util.Optional;
 
-import com.ayoub.users.entities.Role;
-import com.ayoub.users.entities.User;
-import com.ayoub.users.service.register.RegistationRequest;
+import com.security.users.entities.Role;
+import com.security.users.entities.User;
+import com.security.users.service.register.RegistationRequest;
 public interface UserService {
 	User saveUser(User user);
 	User findUserByUsername (String username);

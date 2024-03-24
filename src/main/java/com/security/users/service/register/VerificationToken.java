@@ -1,4 +1,4 @@
-package com.ayoub.users.service.register;
+package com.security.users.service.register;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import com.ayoub.users.entities.User;
+import com.security.users.entities.User;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

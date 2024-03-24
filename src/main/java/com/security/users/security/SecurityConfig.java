@@ -1,4 +1,4 @@
-package com.ayoub.users.security;
+package com.security.users.security;
 import java.util.Arrays;
 import java.util.Collections;
 

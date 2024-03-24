@@ -1,4 +1,4 @@
-package com.ayoub.users.security;
+package com.security.users.security;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +17,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ayoub.users.entities.User;
+import com.security.users.entities.User;
 
 
 public class JWTAuthenticationFilter extends
