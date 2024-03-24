@@ -8,8 +8,8 @@
 		<version>3.0.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ayoub</groupId>
-	<artifactId>users.microservice-</artifactId>
+	<groupId>com.security</groupId>
+	<artifactId>users.microservice-2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>users.microservice-</name>
 	<description>Demo project for Spring Boot</description>
