@@ -25,16 +25,13 @@ public class MyUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		User user = userService.findUserByUsername(username);
-		if (user==null) 
-		 throw new UsernameNotFoundException("Utilisateur introuvable !");
+		if (user==null) throw new UsernameNotFoundException("Utilisateur introuvable !");
 		List<GrantedAuthority> auths = new ArrayList<>();
-		user.getRoles().forEach(role -> {
-		GrantedAuthority auhority = new
-		SimpleGrantedAuthority(role.getRole());
+		user.getRoles().forEach(role -> {GrantedAuthority auhority = new SimpleGrantedAuthority(role.getRole());
+		
 		auths.add(auhority);
 		});
-		return new org.springframework.security.core.
-		userdetails.User(user.getUsername(),user.getPassword(),auths);
+		return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),auths);
 		 }
 
 

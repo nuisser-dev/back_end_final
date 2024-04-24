@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.security.users.entities.Handicap_type;
 import com.security.users.entities.User;
 import com.security.users.service.UserService;
 import com.security.users.service.register.RegistationRequest;
@@ -35,5 +36,11 @@ public class UserRestController {
 	    public User verifyEmail(@PathVariable("token") String token){    
 	  return userService.validateToken(token); 
 	    } 
-
+	 @PostMapping("/add_handicap_user/{iduser}/{handicapName}") 
+	 public User addhandicap_user(@PathVariable("iduser") String iduser ,@PathVariable("handicapName") String handicapName) 
+	 { 
+	  return userService.addhandicap_user(iduser,handicapName);
+	 } 
+	 
+	 
 }

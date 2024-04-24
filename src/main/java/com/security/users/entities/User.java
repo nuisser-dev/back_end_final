@@ -21,9 +21,11 @@ public class User {
     private String password;
     private Boolean enabled;
     private String email;
-
+    
+private String code;
     // Define the relationship between User and Role using appropriate MongoDB annotations
     // Assuming you still want to use Many-to-Many relationship
     // Adjust according to your MongoDB schema design if needed
     private List<Role> roles;
+    private List<Handicap_type> handicap_type;
 }

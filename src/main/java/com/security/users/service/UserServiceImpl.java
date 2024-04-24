@@ -3,16 +3,21 @@ package com.security.users.service;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import com.security.users.entities.Society;
+import com.security.users.entities.Handicap_type;
 import com.security.users.entities.Role;
 import com.security.users.entities.User;
+import com.security.users.repos.Handicape_typeRepository;
 import com.security.users.repos.RoleRepository;
+import com.security.users.repos.SocietyRepository;
 import com.security.users.repos.UserRepository;
 import com.security.users.service.exception.ExpiredTokenException;
 import com.security.users.service.exception.InvalidTokenException;
@@ -23,7 +28,6 @@ import com.security.users.service.register.VerificationTokenRepository;
 
 @Transactional
 @Service
-
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRep;
@@ -34,6 +38,14 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	SocietyRepository societyrepo;
+	
+	
+	@Autowired
+	Handicape_typeRepository hanicape;
+	
+	
 	@Override
 	public User saveUser(User user) {
 		// TODO Auto-generated method stub
@@ -81,7 +93,7 @@ public class UserServiceImpl implements UserService {
 	        newUser.setEmail(request.getEmail()); 
 	        newUser.setPassword(bCryptPasswordEncoder.encode(request.getPassword())); 
 	        newUser.setEnabled(false);
-	        
+	        newUser.setCode(request.getCode());
 	        userRep.save(newUser); 
 	 
 	        //ajouter à newUser le role par défaut USER 
@@ -92,11 +104,18 @@ public class UserServiceImpl implements UserService {
 	       
 	        userRep.save(newUser); 
 	        
-	        //génére le code secret  
-	        String code = this.generateCode(); 
-	         
-	        VerificationToken token = new VerificationToken(code, newUser); 
-	        verificationTokenRepo.save(token);       
+	        
+	        Society s = societyrepo.findByCode(request.getCode());
+		       
+		       List <User> lst =userRep.findAllByCode(request.getCode());
+		       
+		       s.setUsers(lst);
+		       societyrepo.save(s);
+		      
+		       
+	        
+	        
+	          
 	         
 	   
 	        return newUser; 
@@ -125,5 +144,20 @@ public class UserServiceImpl implements UserService {
 	         userRep.save(user); 
 	         return user; 
 	 }
+	@Override
+	public User addhandicap_user(String iduser, String handicapName) {
+		User usr=userRep.findById(iduser).orElseThrow(() -> new NoSuchElementException("No handicap found with id: " + iduser));
+		Handicap_type handicap=hanicape.findByTypehandicap(handicapName).orElseThrow(() -> new NoSuchElementException("No handicap found with id: " + handicapName));
+		List<Handicap_type> hand =new ArrayList<>();
+		hand.add(handicap);
+		usr.setHandicap_type(hand);
+		String code = this.generateCode(); 
+        
+        VerificationToken token = new VerificationToken(code, usr); 
+        verificationTokenRepo.save(token); 
+		return userRep.save(usr);
+	}
 	
+	
+		
 }

@@ -17,22 +17,22 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
+import com.security.users.repos.UserRepository;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 
 
 @Configuration
 @EnableWebSecurity
-
 public class SecurityConfig {
 
 	@Autowired
 	AuthenticationManager authMgr;
+	@Autowired
+	UserRepository userrepo;
 	@Bean
-	public AuthenticationManager authManager(HttpSecurity http, 
-	BCryptPasswordEncoder bCryptPasswordEncoder, 
-	UserDetailsService userDetailsService) 
-	 throws Exception {
+	public AuthenticationManager authManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailsService userDetailsService) throws Exception {
 	 return http.getSharedObject(AuthenticationManagerBuilder.class)
 	 .userDetailsService(userDetailsService)
 	 .passwordEncoder(bCryptPasswordEncoder)
@@ -45,8 +45,7 @@ public class SecurityConfig {
 	.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 	.cors().configurationSource(new CorsConfigurationSource() {
 		 @Override
-		 public CorsConfiguration getCorsConfiguration(HttpServletRequest 
-		request) {
+		 public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 		 CorsConfiguration config = new CorsConfiguration();
 		 
 		config.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
@@ -59,10 +58,10 @@ public class SecurityConfig {
 		 }
 		 }).and()
 	.authorizeHttpRequests()
-	.requestMatchers("/register/**","/verifyEmail/**").hasAuthority("ADMIN")
+	.requestMatchers("/register/**","/verifyEmail/**" ,"/society/addsociety" ,"society/getby/**" ,"/functionality/addfunctionalty" ,"/functionalitygetall_functionalty" ,"/handicap_type/addhandicap" ,"/handicap_type/get/**" ,"/handicap_type/all" ,"/add_handicap_user/**" ,"/findhandicap_by_username/**").permitAll()
 	.requestMatchers("/login").permitAll()
 	.requestMatchers("/all").hasAuthority("ADMIN")
-	 .anyRequest().authenticated().and().addFilterBefore(new  JWTAuthenticationFilter(authMgr), UsernamePasswordAuthenticationFilter.class)
+	 .anyRequest().authenticated().and().addFilterBefore(new  JWTAuthenticationFilter(authMgr,userrepo), UsernamePasswordAuthenticationFilter.class)
 	 .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
 
